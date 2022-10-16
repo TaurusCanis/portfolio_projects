@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="title">Getting Started</h1>
+    <div class="block">
+            This questionnaire begins your MBSR journey. Recording your responses to these questions and those on the
+    practice logs will help ground your practice and learnings in a way that would not be possible if you simply answered
+    these questions in your head. In a way, this is the first mindfulness practice: being mindful of your intentions and
+    commitment to the process you are about to begin.
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="block">
+            So, first, there is probably something that drew you to this program that made it seem like a good idea. For
+            example, you may wake up in the middle of the night with worries and concerns that keep you from getting a good
+            night’s sleep, or you may be dealing with health issues, and you’ve heard that mindfulness can help you deal with
+            them, or you may have trouble concentrating, or you may simply want to increase your ability to be present and
+            fully engaged in life, to accept more fully yourself/others, just as you/they are.
+        </div>
+        <div class="field">
+            <label class="label" for="end_of_course_hope">By the end of the course, I am hoping that: </label>
+            <div class="control">
+                {{ form.end_of_course_hope }}
+            </div>
+            
+        </div>
+        
+        <div class="block">
+            While there are things you hope that will get better, it is important to recognize positive aspects of yourself,
+    because it is these things that form the base for any self-improvement. We tend to take for granted our own core
+    strengths, so give yourself a few minutes to reflect on this. For instance, what would a good friend or close family
+    member say that they appreciate about you?
+        </div>
+        <div class="field">
+            <label class="label" for="strengths">
+                Some of my strengths are:
+            </label>
+            <div class="control">
+                {{ form.strengths }}
+            </div>
+            
+        </div>
+        
+        <div class="block">
+            Finding a specific time and place for your half-hour of daily practice is likely to be one of the most difficult
+    hurdles, and writing down now when and where you’ll be doing your daily practice will help you to keep your promise
+    to yourself to practice each day. People often choose to practice first thing in the morning, before roommates or
+    family members are up and about, and others like the evening shortly before bedtime, or just after arriving home
+    from work. Precisely when you practice is less important than having a set time and place, a time that you know you
+    can practice without having to attend to the telephone or be responsive to others, and a place that is quiet and
+    separate from others.
+        </div>
+        <div class="field">
+            <label class="label" for="practice_time">
+                When will I practice? (Try to be concrete, e.g., 6:30am M-F, 7:30am Sat/Sun):  
+            </label>
+            <div class="control">
+                {{ form.practice_time }}
+            </div>
+            
+        </div>
+        <div class="field">
+            <label class="label" for="practice_location">
+                Where I am planning to practice (e.g., corner of the bedroom, basement, etc.): 
+            </label>
+            <div class="control">
+                {{ form.practice_location }}
+            </div>
+            
+        </div>
+        
+        <div class="block">
+            In addition, you will want to allow time each week to prepare for the coming week’s practice by watching that
+    week’s videos and/or starting the reading indicated for that week. Since we recommend practicing six days a week,
+    you could choose to prepare for the coming week on the seventh day, starting at the same time you normally would
+    practice. On this day, it’s best to reserve a time period of 60-90 minutes.
+        </div>
+        <div class="field">
+            <label class="label" for="prep_time">
+                The time & day of the week I will get ready for the coming week’s practice is:  
+            </label>
+            <div class="control">
+                {{ form.prep_time }}
+            </div>
+            
+        </div>
+        
+        <button class="button is-info" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

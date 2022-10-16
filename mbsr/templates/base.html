@@ -1,0 +1,29 @@
+{% load static %}
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
+        <link rel="stylesheet" href="{% static 'mbsr/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'mbsr/mystyles.css' %}">
+    </head>
+    <body>
+        <header>
+            {% include 'mbsr/navbar.html' %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {# {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %} #}
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </header>
+        <main class="container">
+            {% block content %}
+
+            {% endblock %}
+        </main>     
+    </body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="center-text title is-2">
+    Welcome, {{ user }}!
+</h2>
+{% if object.has_started %}
+<div>
+    <h3 class="title is-3 center-text">Week {{ object.is_in_week }} - Day {{ day_of_mbsr_week }}</h3>
+    <div class="level">
+        <div class="level-item has-text-centered">
+            <div class="block">
+                <div class="block">
+                {% if not formal_practice_exists %}
+                    <a class="button is-primary btn-full-width" href="{% url 'mbsr:formal_practice_create_view' %}">Log Today's Formal Practice</a>
+                    </div>
+                {% else %}
+                    <!-- <h4 class="block title is-4 mb-5">Today's Formal Practice is complete!</h4> -->
+                    <a class="button is-info" href="{% url 'mbsr:formal_practice_detail_view' date=date_today %}">View Today's Formal Practice Entry</a>
+                </div>
+                {% endif %}
+                <div class="block">
+                    <a class="button is-warning" href="{% url 'mbsr:formal_practice_list_view' %}">View Past Formal Practice Entries</a>
+                </div>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div class="block">
+                <div class="block">
+                {% if not informal_practice_exists %}
+                    <a class="button is-primary btn-full-width" href="{% url 'mbsr:informal_practice_create_view' %}">Log Today's Informal Practice</a>
+                </div>
+                {% else %}
+                    <!-- <h4 class="block title is-4 mb-5">Today's Informal Practice is complete!</h4> -->
+                    <a class="button is-info" href="{% url 'mbsr:informal_practice_detail_view' date=date_today %}">View Today's Informal Practice Entry</a>
+                </div>
+                {% endif %}
+                <div class="block">
+                    <a class="button is-warning" href="{% url 'mbsr:informal_practice_list_view' %}">View Past Informal Practice Entries</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="level">
+        <div class="level-item has-text-centered">
+            <div class="block">
+                <div class="block">
+                    <a class="button is-warning" href="{% url 'mbsr:getting_started_detail_view' %}">View Getting Started Responses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="level">
+    <div class="level-item has-text-centered">
+        <div class="block">
+            <a class="button is-primary is-large" href="{% url 'mbsr:getting_started_create_view' %}">Get Started</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

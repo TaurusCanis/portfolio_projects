@@ -1,0 +1,62 @@
+<!-- <nav>
+    <div class="pure-menu pure-menu-horizontal">
+        <a href="{% url 'mbsr:index' %}" class="pure-menu-heading pure-menu-link">MBSR</a>
+        <ul class="pure-menu-list">
+            {% if user.is_authenticated %}
+            <li class="pure-menu-item">
+                <a href="{% url 'mbsr:account_home_view' pk=user.id %}" class="pure-menu-link">Account Home</a>
+            </li>
+            <li class="pure-menu-item">
+                <a href="{% url 'mbsr:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="pure-menu-item">
+                <form method="POST" action="{% url 'mbsr:login' %}">
+                    {% csrf_token %}
+                    {{ login }}
+                    <input type="submit"></input>
+                    <input type="hidden" name="next" value="/mbsr/account_view_redirect/">
+                </form>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav> -->
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{% url 'mbsr:index' %}">
+        <strong>MBSR</strong>
+      </a>
+
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+          {% if user.is_authenticated %}
+        <a href="{% url 'mbsr:account_home_view' pk=user.id %}" class="navbar-item">
+          Account Home
+        </a>
+        {% endif %}
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            {% if user.is_authenticated %}
+            <a href="{% url 'mbsr:logout' %}" class="button is-primary">
+                <strong>Logout</strong>
+              </a>
+              {% else %}
+            <a href="{% url 'mbsr:signup_view' %}" class="button is-warning">
+              <strong>Sign up</strong>
+            </a>
+            <a href="{% url 'mbsr:login' %}" class="button is-primary">
+              Log in
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>

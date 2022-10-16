@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="title is-1">Informal Practice Form - {{ instructions.title|safe }}</h1>
+    <h2 class="title is-2">Week {{ week }} - {{ date }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="block">
+            {{ instructions.instructions }}    
+        </div>
+        <div class="field">
+            <label class="label">
+                {{ instructions.box_1|safe }}
+            </label>
+            <div>
+                <em>Ex. {{ instructions.ex_1 }}</em>
+            </div>
+            <div class="control">
+                {{ form.situation }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">
+                {{ instructions.box_2|safe }}
+            </label>
+            <div>
+                <em>Ex. {{ instructions.ex_2 }}</em>
+            </div>
+            <div class="control">
+                {{ form.feelings_before }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">
+                {{ instructions.box_3|safe }}
+            </label>
+            <div>
+                <em>Ex. {{ instructions.ex_3 }}</em>
+            </div>
+            <div class="control">
+                {{ form.feelings_during }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">
+                {{ instructions.box_4|safe }}
+            </label>
+            <div>
+                <em>Ex. {{ instructions.ex_4 }}</em>
+            </div>
+            <div class="control">
+                {{ form.learned }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">
+                {{ instructions.box_5|safe }}
+            </label>
+            <div>
+                <em>Ex. {{ instructions.ex_5 }}</em>
+            </div>
+            <div class="control">
+                {{ form.feelings_now }}
+            </div>
+        </div>
+        {% if instructions.box_6 %}
+        <div class="field">
+            <label class="label">
+                {{ instructions.box_6|safe }}
+            </label>
+            <div>
+                <em>Ex. {{ instructions.ex_6 }}</em>
+            </div>
+            <div class="control">
+                {{ form.feelings_now }}
+            </div>
+        </div>
+        {% endif %}
+        <button class="button is-info" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="block">
+    <h2 class="title is-2 center-text">Formal Practice View</h2>
+    <h3 class="title is-3 center-text">Week {{ object.week }}, Day {{ object.day }}</h3>
+    <h4 class="title is-4 center-text">{{ object.date }}</h4>
+</div>
+<div class="block box">
+    {{ object.comment }}
+</div>
+<div>
+    <a class="button is-warning" href="{% url 'mbsr:formal_practice_list_view' %}">Back</a>
+</div>
+<div>
+    {#<a href="{% url '' %}">View Another Entry</a>#}
+</div>
+
+{% endblock %}

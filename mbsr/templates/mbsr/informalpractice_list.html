@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="title is-2 center-text">Informal Practice Log</h2>
+<div class="columns">
+    <div class="column">
+        {% for entry in object_list %}
+        <div class="level">
+            <div class="level-item">
+                <a href="{% url 'mbsr:informal_practice_detail_view' date=entry.date %}">
+                    Week {{ entry.week }},
+                    Day {{ entry.day }} - 
+                    {{ entry.date }}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="level">
+                <div class="level-item">
+                    <h1 class="title is-1 center-text">MBSR</h1>
+                </div>
+            </div>
+            <div class="level">
+                <div class="level-item">
+                    <h2 class="title is-2 center-text">Mindfulness-Based Stress Reduction</h2>
+                </div>
+            </div>
+            <div class="level">
+                <div class="level-item">
+                    <h3 class="subtitle is-3">Log your daily practice for the MSBR program presented by</h3>
+                </div>            
+            </div>
+            <div class="level">
+                <div class="level-item">
+                    <h3 class="subtitle is-3"><a href="https://palousemindfulness.com/" target="_blank">palousemindfulness.com</a></h3>
+                </div>
+            </div>
+            <div class="level buttons are-large">
+                <!-- <div class="level-left"> -->
+                    <div class="level-item">
+                        <a href="{% url 'mbsr:signup_view' %}" class="button is-warning">
+                            <strong>Sign up</strong>
+                        </a>
+                    </div>
+                <!-- </div> -->
+                <!-- <div class="level-right"> -->
+                    <div class="level-item">
+                        <a href="{% url 'mbsr:login' %}" class="button is-primary">
+                            Log in
+                        </a>
+                    </div>
+                <!-- </div> -->
+            </div>  
+        </div>        
+    </div>
+</section>
+{% endblock %}

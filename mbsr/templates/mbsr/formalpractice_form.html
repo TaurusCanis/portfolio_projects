@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="title">Formal Practice Form - Week {{ week }} - {{ date }}</h1>
+    {% if instructions.title %}
+    {{ instructions.title }}
+    {% endif %}
+    <div class="block">
+        {{ instructions.text|safe }}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="field">
+            <div class="control">
+                {{ form.comment }}
+            </div>
+        </div>
+        <button class="button is-info" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}
