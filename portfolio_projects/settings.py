@@ -28,10 +28,10 @@ SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.getenv("DEBUG", False) == True
-DEBUG = False
+DEBUG = True
 
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", False) == True
-DEVELOPMENT_MODE = False
+DEVELOPMENT_MODE = True
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'mbsr.apps.MbsrConfig',
     'corsheaders',
     'rest_framework',
+    'homepage.apps.HomepageConfig',
     'ecommerce_backend.apps.EcommerceBackendConfig',
 ]
 
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'portfolio_projects.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,6 +138,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static')
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -161,4 +165,5 @@ EMAIL_HOST_USER = os.environ.get("TCR_USER", "tauruscanisres@gmail.com")
 EMAIL_HOST_PASSWORD = os.environ.get("TCR_PASSWORD") 
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
 

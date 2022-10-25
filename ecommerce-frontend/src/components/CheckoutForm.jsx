@@ -58,7 +58,8 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/success/",
+        // return_url: "http://localhost:8000/ecommerce-api/success/",
+        return_url: "http://127.0.0.1:8000/ecommerce/success/",
       },
     });
 

@@ -11,7 +11,7 @@ library.add(faShoppingCart)
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/ecommerce">
       <App />
     </BrowserRouter>
   // </React.StrictMode>

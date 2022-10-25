@@ -1,0 +1,213 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+		<link rel="stylesheet" href="../static/styles/portfolio.css">
+		<link rel="stylesheet" href="../static/styles/navbar.css">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.11.0/devicon.min.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+
+	</head>
+	<body>
+		<header>
+			<nav class="navbar" role="navigation">
+			  <a class="nav-logo" href="#">Andrew Dole</a>
+			  <ul class="nav-menu">
+				<li class="nav-item">
+				  <a class="nav-link active" aria-current="page" href="#home">Home</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#about">About Me</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#projects">Projects</a>
+				</li>
+				<li class="nav-item button ">
+				  <a class="nav-link" href="#contact">Contact Me</a>
+				</li>
+			  </ul>
+			  <button class="hamburger" aria-label="Mobile Navigation Button" aria-expanded="false">
+				  <span class="bar"></span>
+				  <span class="bar"></span>
+				  <span class="bar"></span>
+			  </button>
+			</nav>
+			<div class="title main-title">
+					<h1>Andrew Dole</h1>
+					<h2>Python, Django Developer</h2>
+				</div>
+		</header>
+		<main class="container wrapper">
+			
+			<section class="container" id="about">
+<!--
+				<div class="title">
+					<h3>About Me</h3>
+				</div>
+-->
+				<div>
+					<p>Hi. I'm Andrew, and I am a self-taught programmer. Over the last five years, I have explored programming with Java, Javascript, and Swift. In the last year and a half, I have been focusing on developing software in Python with Django. Below are short summaries and links to some of my <a href="#projects">projects</a>. All use PostgreSQL and are deployed on Heroku (with the exception of this site which is hosted using an AWS S3).</p><br>
+					<p> I've spent my professional career in education - teaching Latin and running a tutoring service over the last ten years. At this point, I am ready to make a career change and join the world of software development. I am versatile, a quick study, eager to learn, and I welcome the opportunity to share how I might be able to contribute to your project and team.</p><br>
+					<p>In addition to programming, I love making and listening to music. I am a huge fan of the Rolling Stones. And, most importantly, by my side, you'll always find my trusty companion, Lester the Bulldog. Lester is eight years old. He loves going to the park, chasing waves at the beach, and, of course, eating and sleeping.</p>
+				</div>
+			</section>
+			<section class="container" id="home">
+				<div class="picture"> 
+					<img src="../static/img/headshot_1.png">
+				</div>
+			</section>
+			<section class="container" id="social">
+				<div class="title">
+					<h3>More Info</h3>
+				</div>
+				<div class="container-row">
+					<div class="container">
+						<a href="https://www.linkedin.com/in/acdole" target="_blank">
+							<i class="devicon-linkedin-plain" style="font-size: 80px;"></i>
+						</a>
+						<h3>My Linkedin Page</h3>
+					</div>
+					<div class="container">
+						<a href="https://github.com/tauruscanis" target="_blank">
+							<i class="skills-icon devicon-github-original"></i>
+						</a>
+						<h3>My Github Page</h3>
+					</div>
+				</div>
+			</section>
+			<section class="container" id="skills">
+				<div class="title">
+					<h3>Skills</h3>
+				</div>
+				<div class="container-row">
+					<div class="container skill-icon">
+						<i class="skills-icon devicon-python-plain"></i>
+						<h3>Python</h3>
+					</div>
+					<div class="container skill-icon">
+						<i class="skills-icon devicon-django-plain"></i>
+						<h3>Django</h3>
+					</div>
+					<div class="container skill-icon">
+						<i class="skills-icon devicon-javascript-plain"></i>
+						<h3>Javascript</h3>
+					</div>
+					<div class="container skill-icon">
+						<i class="skills-icon devicon-html5-plain"></i>
+						<h3>HTML</h3>
+					</div>
+					<div class="container skill-icon">
+						<i class="skills-icon devicon-css3-plain"></i>
+						<h3>CSS</h3>
+					</div>
+					<div class="container skill-icon">
+						<i class="skills-icon devicon-postgresql-plain"></i>
+						<h3>Postresql</h3>
+					</div>
+					<div class="container skill-icon">
+						<i class="skills-icon devicon-heroku-original"></i>
+						<h3>Heroku</h3>
+					</div>
+					<div class="container skill-icon">
+						<i class="skills-icon devicon-github-original"></i>
+						<h3>Github</h3>
+					</div>
+				</div>
+			</section>
+			<section class="container no-gap" id="projects">
+				<div class="title">
+					<h3>Projects</h3>
+				</div>
+				<div class="container border" style="margin-bottom: 1.5em;">
+					<h4>To login to any project, use:</h4>
+					<div>
+						<div>Username: guest</div>
+						<div>Pasword: bulldog123</div>
+					</div>
+				</div>
+				<div class="projects-display">
+					<div class="card">
+						<div class="card-title">
+							<h4>Money Manager App</h4>
+						</div>
+						<div class="container">
+							<a href="https://ledger-7.herokuapp.com/budgeter/" target="_blank" class="card-img-anchor"><img src="../static/img/ledger-7_screenshot.png" class="card-img"></a>
+							
+							<a href="https://github.com/TaurusCanis/ledger7" target="_blank">Github</a>
+							<p class="project-info-0">I built my Money Manager App during the first few months of 2021. By logging expenses and transactions from all funding sources, the app helps users maintain a real-time understanding of their available funds. It essentially extends the idea of checkbook to include credit cards. The app was built using Django and deployed using Heroku.</p>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-title">
+							<h4>Tauruscanis Rex Website and Store</h4>
+						</div>
+						<div class="container">
+							<a href="http://tauruscanisrex.com/" target="_blank" class="card-img-anchor"><img src="../static/img/TCR_thumbnail.png" class="card-img"></a>
+							<a href="https://github.com/TaurusCanis/tcr_home" target="_blank">Github</a>
+							<p class="project-info-1">I built the Tauruscanis Rex website and store as part of a music project I worked on in summer and fall of 2020. The store uses the Braintree Payments API to process payments and Printful's API to submit and fulfill orders with their dropshipping service. tauruscanisrex.com is built on Django and hosted on Heroku.</p>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-title">
+							<h4>Test Prep App</h4>
+						</div>
+						<div class="container">
+							<a href="https://ace-it-prep.herokuapp.com/ace_it_test_prep/" target="_blank" class="card-img-anchor"><img src="../static/img/ace-it-test-prep-thumbnail.png" class="card-img"></a>
+							<a href="https://github.com/TaurusCanis/ace_it" target="_blank">Github</a>
+							<p class="project-info-2">In order to better help my students prepare for standardized tests, I built a test prep web app. Its functionality is fairly limited at this stage, though users can create an account, take practice tests, and review their results. The frontend makes use of Javacript to power the multiple-choice selection functions. It is built on Django and deployed using Heroku.</p>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-title">
+							<h4>Tutor Tracker App</h4>
+						</div>
+						<div class="container">
+							<a href="https://tutor-tracker.herokuapp.com/tracker" target="_blank" class="card-img-anchor"><img src="../static/img/tutor_tracker_thumbnail.png" class="card-img"></a>
+							<a href="" target="_blank">Github</a>
+							<p class="project-info-3">At the beginning of 2020, I built an app to help me better organize and track appointments and billing for my tutoring business. The app allows users to create student and parent profiles, schedule sessions, record and email session recap notes, and generate invoices. It was built with Django and depolyed using Heroku.</p>
+						</div>
+					</div>
+					<div>
+						This portfolio page is hosted using AWS S3. Access the <a href="https://github.com/TaurusCanis/adole_portfolio" target="_blank">Github repo</a>.
+					</div>
+				</div>
+			</section>
+			<section id="contact">
+				<div class="title">
+					<h3>Contact Me: acdole09@gmail.com</h3>
+				</div>
+<!--
+				<div class="container-row">
+					<form class="container form">
+						<div>
+							<label for="name">Name: </label>
+							<input type="text" name="name" id="name">
+						</div>
+						<div>
+							<label for="email">Email: </label>
+							<input type="email" name="email" id="email">
+						</div>
+						<div>
+							<label for="message">Message: </label>
+							<textarea type="email" name="message" id="message"></textarea>
+						</div>
+						<div class="container">
+							<input class="btn" type="submit">
+						</div>
+					</form>
+				</div>
+-->
+			</section>
+		</main>
+		<footer>
+			<div>
+				<h4>andrewdole.dev</h4>
+				<h4 class="title">&#169; 2021</h4>
+			</div>
+		</footer>
+		<script type="text/javascript" src="../static/js/navbar.js"></script>
+		<script type="text/javascript" src="../static/js/readmore.js"></script>
+		<script src="https://use.fontawesome.com/6dd549a365.js"></script>
+	</body>
+</html>

@@ -123,7 +123,7 @@ class Order(models.Model):
     subtotal = models.CharField(max_length=100, blank=True, null=True)
     grand_total = models.CharField(max_length=100, blank=True, null=True)
     shipping_cost = models.CharField(max_length=100, blank=True, null=True)
-    items = models.ManyToManyField(OrderItem, blank=True, null=True)
+    items = models.ManyToManyField(OrderItem, blank=True)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField(blank=True, null=True)
     ordered = models.BooleanField(default=False)

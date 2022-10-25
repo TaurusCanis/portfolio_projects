@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5fe66cd8.css",
+    "main.js": "/static/js/main.f4c5f0a9.js",
+    "static/media/item-2-mockup.jpg": "/static/media/item-2-mockup.d75bf9ff2cbceaf62e4e.jpg",
+    "static/media/TCR_Main_Logo.png": "/static/media/TCR_Main_Logo.cc689fb8855d7e767e87.png",
+    "static/media/item-1-mockup.jpg": "/static/media/item-1-mockup.e94657ba38087a950013.jpg",
+    "static/media/Brothers Regular.otf": "/static/media/Brothers Regular.a5d6f7f2ab736f47b826.otf",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.5fe66cd8.css.map": "/static/css/main.5fe66cd8.css.map",
+    "main.f4c5f0a9.js.map": "/static/js/main.f4c5f0a9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5fe66cd8.css",
+    "static/js/main.f4c5f0a9.js"
+  ]
+}
