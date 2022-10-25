@@ -34,6 +34,7 @@ DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", False) == True
 DEVELOPMENT_MODE = True
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS.append("https://portfolio-projects-app-is9ao.ondigitalocean.app/ecommerce/*")
 
 # Application definition
 
