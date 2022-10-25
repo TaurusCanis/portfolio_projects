@@ -3,9 +3,11 @@ import { createContext, useState, useEffect } from "react";
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
-    const PRODUCTION = true;
-    let BASE_URL = PRODUCTION ? "https://portfolio-projects-app-is9ao.ondigitalocean.app/" 
-                              : "http://127.0.0.1:8000/";
+    // const PRODUCTION = true;
+    // let BASE_URL = PRODUCTION ? "https://portfolio-projects-app-is9ao.ondigitalocean.app/" 
+    //                           : "http://127.0.0.1:8000/";
+
+    let BASE_URL = "https://portfolio-projects-app-is9ao.ondigitalocean.app/";
 
     const [sessionId, setSessionId] = useState(() => {
         const sessionId = localStorage.getItem("sessionId");
