@@ -3,6 +3,10 @@ import { createContext, useState, useEffect } from "react";
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
+    const PRODUCTION = true;
+    let BASE_URL = PRODUCTION ? "https://portfolio-projects-app-is9ao.ondigitalocean.app/" 
+                              : "http://127.0.0.1:8000/";
+
     const [sessionId, setSessionId] = useState(() => {
         const sessionId = localStorage.getItem("sessionId");
         return sessionId ? sessionId : null;
@@ -78,7 +82,7 @@ export function DataProvider({ children }) {
         setSessionId(null);
     }
 
-    const contextData = { cart, addToCart, sessionId, clearSessionId };
+    const contextData = { cart, addToCart, sessionId, clearSessionId, BASE_URL };
     
     return (
         <DataContext.Provider value={ contextData }>
