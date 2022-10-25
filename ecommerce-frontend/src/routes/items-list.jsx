@@ -1,16 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import item1Mockup from "../img/item-1-mockup.jpg";
+import DataContext from "../DataContext";
+import { useContext } from "react";
 
 export default function ItemsList() {
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const { BASE_URL } = useContext(DataContext); 
 
-    useEffect(() => {
-        fetch("http://127.0.0.1:8000/ecommerce-api/items/", {
+    useEffect(() => {        
+        const url = BASE_URL + "ecommerce-api/items/";
+
+        fetch(url, {
             method: 'GET',
         })
-        .then((response) => response.json())
+        .then((response) => {
+            console.log("RESPONSE: ", response);
+            return response.json();
+        })
         .then(data => {
             console.log("DATA: ", data);
             setItems(data);

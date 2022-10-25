@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import DataContext from "../DataContext";
 
 export default function CheckoutForm() {
+  const { BASE_URL } = useContext(DataContext);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -58,8 +60,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        // return_url: "http://localhost:8000/ecommerce-api/success/",
-        return_url: "http://127.0.0.1:8000/ecommerce/success/",
+        return_url: BASE_URL + "ecommerce/success/",
       },
     });
 

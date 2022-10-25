@@ -18,7 +18,7 @@ export function DataProvider({ children }) {
     });
 
     async function updateOrder(variantId, amount, method, session_id=null) {
-        let url = "http://127.0.0.1:8000/ecommerce-api/orders/";
+        let url = BASE_URL + "ecommerce-api/orders/";
 
         const body = {
             variant_id: variantId,

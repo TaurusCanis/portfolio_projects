@@ -8,11 +8,13 @@ const stripePromise = loadStripe("pk_test_4tNiwpsFHEX7N7hon7bpW4kE00saVfxboZ");
 
 
 export default function Payment() {
+  const { BASE_URL } = useContext(DataContext);
     const { sessionId } = useContext(DataContext);
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/ecommerce-api/create-payment-intent/" + sessionId + "/", {
+      let url = BASE_URL + `ecommerce-api/create-payment-intent/${sessionId}/`;
+        fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             // body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),

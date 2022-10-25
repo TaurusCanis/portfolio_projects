@@ -5,6 +5,7 @@ import DataContext from "../DataContext";
 import { useFormFields } from "../hooks/hooks";
 
 export default function Checkout() {
+    const { BASE_URL } = useContext(DataContext);
     const [sameAddress, setSameAddress] = useState(false);
     const [customerInformation, setCustomerInformation] = useFormFields({
         "firstName": "",
@@ -58,7 +59,9 @@ export default function Checkout() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`http://127.0.0.1:8000/ecommerce-api/orders/${sessionId}/`, {
+        const url = BASE_URL + `ecommerce-api/orders/${sessionId}/`;
+
+        fetch(url, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json, text/plain',

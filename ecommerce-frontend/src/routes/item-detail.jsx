@@ -20,9 +20,12 @@ export default function ItemDetail() {
     const [quantity, setQuantity] = useState(1);
     const [variantId, setVariantId] = useState();
     const {cart, addToCart} = useContext(DataContext);
+    const { BASE_URL } = useContext(DataContext);
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/ecommerce-api/items/${params.itemId}/`, {
+        const url = BASE_URL + `ecommerce-api/items/${params.itemId}/`;
+
+        fetch(url, {
             method: 'GET',
         })
         .then((response) => response.json())
