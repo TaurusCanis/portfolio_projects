@@ -131,11 +131,11 @@ class StripeWebhook(APIView):
             payment = self.create_payment(
                 event['id'], 
                 event['data']['object']['amount'], 
-                order.customer, 
-                order.session_id
+                order[0].customer, 
+                order[0].session_id
             )
         )
-        return order
+        return order[0]
 
     def get_order(self, stripe_intent_id):
         print("stripe_intent_id: ", stripe_intent_id)
