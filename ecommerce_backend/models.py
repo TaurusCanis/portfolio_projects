@@ -3,7 +3,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from localflavor.us.models import USStateField
-import math
+import math, uuid
 from decimal import *
 
 # Create your models here.
@@ -115,8 +115,8 @@ class OrderItem(models.Model):
 class Order(models.Model):
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     customer = models.ForeignKey("Customer", on_delete=models.CASCADE, null=True, blank=True)
-    ref_code = models.CharField(max_length=20, blank=True, null=True)
-    session_id = models.CharField(max_length=20, blank=True, null=True)
+    ref_code = models.UUIDField(default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     printful_order_id = models.IntegerField(blank=True, null=True)
     tax = models.CharField(max_length=100, blank=True, null=True)
     vat = models.CharField(max_length=100, blank=True, null=True)

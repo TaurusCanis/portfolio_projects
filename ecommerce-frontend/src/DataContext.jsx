@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
-    const PRODUCTION = true;
+    const PRODUCTION = false;
     let BASE_URL = PRODUCTION ? "https://portfolio-projects-app-is9ao.ondigitalocean.app/" 
                               : "http://127.0.0.1:8000/";
 
@@ -44,20 +44,24 @@ export function DataProvider({ children }) {
             body: JSON.stringify(body),
         })
         .then((res, url) => {
-            res.json();
             console.log("URL*****: ", url);
+            return res.json();
         })
         .then(json => {
             console.log("JSON******: ", json);
             return json
-        });
+        })
+        .catch(err => {
+            console.log('ERROR: ',err);
+         });;
     }
 
     async function addToCart(variantId, amount) {
         if (sessionId == null) {
             const orderData = await updateOrder(variantId, amount, "POST");
-            setSessionId(orderData.session_id);
-            localStorage.setItem("sessionId", orderData.session_id);
+            console.log("orderData: ", orderData);
+            setSessionId(orderData.id);
+            localStorage.setItem("sessionId", orderData.id);
         } else {
             updateOrder(variantId, amount, "PUT", localStorage.getItem("sessionId"));
         }
