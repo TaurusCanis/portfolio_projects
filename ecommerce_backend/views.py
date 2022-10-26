@@ -123,7 +123,7 @@ class StripeWebhook(APIView):
         return
 
     def update_order_details(self, event):
-        order = self.get_order(event['data']['objet']['id'])[0]
+        order = self.get_order(event['data']['object']['id'])[0]
         order.update(
             ref_code = self.create_confirmation_number(),
             ordered = True,
