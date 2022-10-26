@@ -37,12 +37,14 @@ class StripePaymentIntent(APIView):
                 },
                 idempotency_key=session_id,
             )
+            print("SUCCESS")
+            print("PAYMENT_INTENT: ", intent)
             return Response({
                 'success': True,
                 'clientSecret': intent['client_secret']
             })
         except Exception as e:
-            print("EXCEPTION: ", e)
+            print("FAILURE - EXCEPTION: ", e)
             return Response({
                 "success": False,
                 "message": e,
@@ -63,6 +65,7 @@ class StripeWebhook(APIView):
     http_method_names = ['post']
 
     def post(self, *args, **kwargs):
+        print("******StripeWebhook******")
         payload = self.request.body.decode('utf-8')
 
         if endpoint_secret:
