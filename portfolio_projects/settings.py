@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
 DEBUG = True
 
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", False) == True
-DEVELOPMENT_MODE = True
+DEVELOPMENT_MODE = False
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 ALLOWED_HOSTS.append("https://portfolio-projects-app-is9ao.ondigitalocean.app/ecommerce/*")
