@@ -3,11 +3,9 @@ import { createContext, useState, useEffect } from "react";
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
-    // const PRODUCTION = true;
-    // let BASE_URL = PRODUCTION ? "https://portfolio-projects-app-is9ao.ondigitalocean.app/" 
-    //                           : "http://127.0.0.1:8000/";
-
-    let BASE_URL = "https://portfolio-projects-app-is9ao.ondigitalocean.app/";
+    const PRODUCTION = true;
+    let BASE_URL = PRODUCTION ? "https://portfolio-projects-app-is9ao.ondigitalocean.app/" 
+                              : "http://127.0.0.1:8000/";
 
     const [sessionId, setSessionId] = useState(() => {
         const sessionId = localStorage.getItem("sessionId");
@@ -20,7 +18,7 @@ export function DataProvider({ children }) {
     });
 
     async function updateOrder(variantId, amount, method, session_id=null) {
-        let url = BASE_URL + "ecommerce-api/orders/";
+        let url = `${BASE_URL}ecommerce-api/orders/`;
 
         const body = {
             variant_id: variantId,
@@ -31,6 +29,9 @@ export function DataProvider({ children }) {
             body["sessionId"] = sessionId;
             url += sessionId + "/";
         }
+
+        console.log("URL: ", url);
+
         return fetch(url, {
             method: method,
             headers: {
