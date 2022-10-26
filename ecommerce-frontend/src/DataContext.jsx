@@ -31,6 +31,7 @@ export function DataProvider({ children }) {
         }
 
         console.log("URL: ", url);
+        console.log("METHOD: ", method);
 
         return fetch(url, {
             method: method,
