@@ -27,15 +27,15 @@ class StripePaymentIntent(APIView):
     def post(self, *args, **kwargs):
         try:
             data = self.request.data
-            id = self.kwargs.get('session_id')
+            session_id = self.kwargs.get('session_id')
             # Create a PaymentIntent with the order amount and currency
             intent = stripe.PaymentIntent.create(
-                amount=self.calculate_order_amount(id),
+                amount=self.calculate_order_amount(session_id),
                 currency='usd',
                 automatic_payment_methods={
                     'enabled': True,
                 },
-                idempotency_key=id,
+                idempotency_key=session_id,
             )
             return Response({
                 'success': True,
@@ -49,14 +49,14 @@ class StripePaymentIntent(APIView):
             })
 
 
-    def get_order(self, id):
-        return Order.objects.get(id=id) 
+    def get_order(self, session_id):
+        return Order.objects.get(session_id=session_id) 
 
     def to_stripe_currency_format(self, value):
         return int(float(value) * 100)
 
-    def calculate_order_amount(self, id):
-        return self.to_stripe_currency_format(self.get_order(id).grand_total)
+    def calculate_order_amount(self, session_id):
+        return self.to_stripe_currency_format(self.get_order(session_id).grand_total)
 
 class StripeWebhook(APIView):
     permission_classes = []
@@ -123,23 +123,23 @@ class StripeWebhook(APIView):
                 event['id'], 
                 event['data']['object']['amount'], 
                 order.customer, 
-                order.id
+                order.session_id
             )
         )
         return order
 
     def get_order(self, idem_pot_key):
         print("idem_pot_key: ", idem_pot_key)
-        return Order.objects.filter(id=idem_pot_key)
+        return Order.objects.filter(session_id=idem_pot_key)
 
     def create_confirmation_number(self):
         return uuid.uuid4()
 
-    def create_payment(self, event_id, amount, customer, id):
+    def create_payment(self, event_id, amount, customer, session_id):
         return Payment.objects.create(
             stripe_payment_id=event_id,
             customer=customer,
-            session_id=id, 
+            session_id=session_id, 
             amount=amount,
         )
 
@@ -191,38 +191,33 @@ class OrderViewSet(viewsets.ModelViewSet):
     permission_classes = []
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    # lookup_field = "session_id"
+    lookup_field = "session_id"
 
     def perform_create(self, serializer):
         print("PERFORM_CREATE")
         try:
-            # session_id = self.create_session_id()
-            # print("id: ", session_id, " length: ", len(session_id))
-            
-            order = serializer.save()
-            order_item = self.create_order_item(order.id)
-            order.items.add(order_item)
-            order.save()
-            print("ORDER: ", order.id)
-            return order
+            session_id = self.create_session_id()
+            print("session_id: ", session_id, " length: ", len(str(session_id)))
+            order_item = self.create_order_item(session_id)
+            serializer.save(session_id=session_id,items=[order_item])
         except Exception as e:
             print("Exception: ", e)
             return 
 
     def perform_update(self, serializer):
         print("PERFORM_UPDATE")
-        # session_id = self.request.data.get('sessionId')
+        session_id = self.request.data.get('sessionId')
         order = self.get_object()
 
         if "variant_id" in self.request.data:
             variant_id = int(self.request.data.get('variant_id'))
-            self.update_order_items(order.id, variant_id, order)
+            self.update_order_items(session_id, variant_id, order)
 
         if "customer_info" in self.request.data:
             self.create_customer_details(serializer)
 
-    # def create_session_id(self):
-    #     return uuid.uuid4()
+    def create_session_id(self):
+        return uuid.uuid4()
 
     def get_object(self):
         print("GET_OBJECT")
@@ -238,9 +233,9 @@ class OrderViewSet(viewsets.ModelViewSet):
     def get_item_variant(self, item_variant_id):
         return ItemVariant.objects.get(id=item_variant_id)
 
-    def create_order_item(self, id):
+    def create_order_item(self, session_id):
         return OrderItem.objects.create(
-            session_id=id,
+            session_id=session_id,
             quantity=self.request.data.get('quantity'),
             item=self.get_item_variant(self.request.data.get('variant_id'))
         )
@@ -264,12 +259,12 @@ class OrderViewSet(viewsets.ModelViewSet):
             address_type = address_type,
         )
 
-    def update_order_items(self, id, variant_id, order):
+    def update_order_items(self, session_id, variant_id, order):
         if variant_id in [order_item.item.id for order_item in order.items.all()]:
             quantity = int(self.request.data.get('quantity'))
-            OrderItem.objects.filter(session_id=id, item_id=variant_id).update(quantity=quantity) 
+            OrderItem.objects.filter(session_id=session_id, item_id=variant_id).update(quantity=quantity) 
         else:
-            order_item = self.create_order_item(id)
+            order_item = self.create_order_item(session_id)
             order.items.add(order_item) 
             order.save()
 

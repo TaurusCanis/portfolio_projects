@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import DataContext from "../DataContext";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderSummary() {
     const {cart, addToCart} = useContext(DataContext);
@@ -7,6 +8,7 @@ export default function OrderSummary() {
     const [orderDetails, setOrderDetails] = useState();
     const { sessionId } = useContext(DataContext);
     const [isLoading, setIsLoading] = useState(true);
+    let navigate = useNavigate();
 
     useEffect(() => {
         if (sessionId != null) {
@@ -18,8 +20,12 @@ export default function OrderSummary() {
                 console.log("json.items: ", json)
                 setOrderDetails(json);
             })
-            .then(() => setIsLoading(false));
-            }
+            .then(() => setIsLoading(false))
+            .catch(err => {
+                console.log("ERROR: ", err);
+                navigate("/items");
+            });
+        }
     }, [])
 
 
