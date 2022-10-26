@@ -194,8 +194,10 @@ class OrderViewSet(viewsets.ModelViewSet):
     lookup_field = "session_id"
 
     def perform_create(self, serializer):
+        print("PERFORM_CREATE")
         try:
             session_id = self.create_session_id()
+            print("session_id: ", session_id, " length: ", len(session_id))
             order_item = self.create_order_item(session_id)
             serializer.save(session_id=session_id,items=[order_item])
         except Exception as e:
@@ -203,6 +205,7 @@ class OrderViewSet(viewsets.ModelViewSet):
             return 
 
     def perform_update(self, serializer):
+        print("PERFORM_UPDATE")
         session_id = self.request.data.get('sessionId')
         order = self.get_object()
 
@@ -217,6 +220,8 @@ class OrderViewSet(viewsets.ModelViewSet):
         return uuid.uuid4()
 
     def get_object(self):
+        print("GET_OBJECT")
+        print("DATA: ", self.request.data)
         order = super().get_object()
         self.update_total(order)
         return order
