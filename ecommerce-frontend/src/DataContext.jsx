@@ -60,8 +60,8 @@ export function DataProvider({ children }) {
         if (sessionId == null) {
             const orderData = await updateOrder(variantId, amount, "POST");
             console.log("orderData: ", orderData);
-            setSessionId(orderData.id);
-            localStorage.setItem("sessionId", orderData.id);
+            setSessionId(orderData.session_id);
+            localStorage.setItem("sessionId", orderData.session_id);
         } else {
             updateOrder(variantId, amount, "PUT", localStorage.getItem("sessionId"));
         }
