@@ -39,7 +39,9 @@ class StripePaymentIntent(APIView):
                 },
                 # idempotency_key=session_id,
             )
-            self.get_order(session_id).save(braintree_transaction_id=intent['id'])
+            order = self.get_order(session_id)
+            order.braintree_transaction_id=intent['id'] 
+            order.save()
             print("SUCCESS")
             print("PAYMENT_INTENT: ", intent)
             return Response({
@@ -135,9 +137,9 @@ class StripeWebhook(APIView):
         )
         return order
 
-    def get_order(self, idem_pot_key):
-        print("idem_pot_key: ", idem_pot_key)
-        return Order.objects.filter(session_id=idem_pot_key)
+    def get_order(self, stripe_intent_id):
+        print("stripe_intent_id: ", stripe_intent_id)
+        return Order.objects.filter(braintree_transaction_id=stripe_intent_id)
 
     def create_confirmation_number(self):
         return uuid.uuid4()
