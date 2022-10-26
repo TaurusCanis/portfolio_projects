@@ -3,6 +3,7 @@ import DataContext from "../DataContext";
 import { useNavigate } from "react-router-dom";
 
 export default function OrderSummary() {
+    const { BASE_URL } = useContext(DataContext);
     const {cart, addToCart} = useContext(DataContext);
     const [orderItems, setOrderItems] = useState();
     const [orderDetails, setOrderDetails] = useState();
@@ -12,7 +13,7 @@ export default function OrderSummary() {
 
     useEffect(() => {
         if (sessionId != null) {
-            fetch("http://127.0.0.1:8000/ecommerce-api/orders/" + sessionId + "/", {
+            fetch(`${BASE_URL}ecommerce-api/orders/${sessionId}/`, {
                 method: "GET"
             })
             .then(res => res.json())
