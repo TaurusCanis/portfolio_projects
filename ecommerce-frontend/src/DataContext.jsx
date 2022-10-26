@@ -32,6 +32,8 @@ export function DataProvider({ children }) {
 
         console.log("URL: ", url);
         console.log("METHOD: ", method);
+        // PICK UP HERE
+        console.log("BODY: ", body);
 
         return fetch(url, {
             method: method,
@@ -41,7 +43,10 @@ export function DataProvider({ children }) {
             },
             body: JSON.stringify(body),
         })
-        .then(res => res.json())
+        .then((res, url) => {
+            res.json();
+            console.log("URL*****: ", url);
+        })
         .then(json => {
             console.log("JSON******: ", json);
             return json
