@@ -67,6 +67,7 @@ class StripeWebhook(APIView):
     def post(self, *args, **kwargs):
         print("******StripeWebhook******")
         payload = self.request.body.decode('utf-8')
+        print("PAYLOAD: ", payload)
 
         if endpoint_secret:
             event = self.verify_event(payload) 
