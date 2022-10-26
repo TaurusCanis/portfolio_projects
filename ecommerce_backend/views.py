@@ -194,9 +194,13 @@ class OrderViewSet(viewsets.ModelViewSet):
     lookup_field = "session_id"
 
     def perform_create(self, serializer):
-        session_id = self.create_session_id()
-        order_item = self.create_order_item(session_id)
-        serializer.save(session_id=session_id,items=[order_item])
+        try:
+            session_id = self.create_session_id()
+            order_item = self.create_order_item(session_id)
+            serializer.save(session_id=session_id,items=[order_item])
+        except Exception as e:
+            print("Exception: ", e)
+            return 
 
     def perform_update(self, serializer):
         session_id = self.request.data.get('sessionId')
