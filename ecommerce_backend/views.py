@@ -37,8 +37,9 @@ class StripePaymentIntent(APIView):
                 automatic_payment_methods={
                     'enabled': True,
                 },
-                idempotency_key=session_id,
+                # idempotency_key=session_id,
             )
+            self.get_order(session_id).save(braintree_transaction_id=intent['id'])
             print("SUCCESS")
             print("PAYMENT_INTENT: ", intent)
             return Response({
@@ -120,7 +121,7 @@ class StripeWebhook(APIView):
         return
 
     def update_order_details(self, event):
-        order = self.get_order(event['request']['idempotency_key'])[0]
+        order = self.get_order(event['data']['objet']['id'])[0]
         order.update(
             ref_code = self.create_confirmation_number(),
             ordered = True,
