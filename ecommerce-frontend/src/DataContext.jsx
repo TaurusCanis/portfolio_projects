@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
-    const PRODUCTION = false;
+    const PRODUCTION = true;
     let BASE_URL = PRODUCTION ? "https://portfolio-projects-app-is9ao.ondigitalocean.app/" 
                               : "http://127.0.0.1:8000/";
 
