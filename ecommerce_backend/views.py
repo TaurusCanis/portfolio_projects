@@ -27,7 +27,9 @@ class StripePaymentIntent(APIView):
     def post(self, *args, **kwargs):
         try:
             data = self.request.data
+            print("DATA: ", data)
             session_id = self.kwargs.get('session_id')
+            print("SESSION_ID: ", session_id)
             # Create a PaymentIntent with the order amount and currency
             intent = stripe.PaymentIntent.create(
                 amount=self.calculate_order_amount(session_id),
