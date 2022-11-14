@@ -29,15 +29,26 @@ class OrderItemSerializer(serializers.ModelSerializer):
         return ItemVariantSerializer(order_item.item).data
 
 class OrderSerializer(serializers.ModelSerializer):
+    customer = serializers.SerializerMethodField()
     items = serializers.SerializerMethodField()
+    shipping_address = serializers.SerializerMethodField()
+    billing_address = serializers.SerializerMethodField()
 
     class Meta:
         model = Order
         fields = '__all__'
 
+    def get_customer(self, order):
+        return CustomerSerializer(order.customer).data
+
     def get_items(self, order):
         return OrderItemSerializer(order.items,many=True).data
 
+    def get_shipping_address(self, order):
+        return AddressSerializer(order.shipping_address).data
+
+    def get_billing_address(self, order):
+        return AddressSerializer(order.billing_address).data
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:

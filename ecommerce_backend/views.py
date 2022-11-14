@@ -251,17 +251,17 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     def create_customer(self, customer_info):
         return Customer.objects.create(
-            first_name=customer_info['firstName'],
-            last_name=customer_info['lastName'],
-            email_address=customer_info['email'],
-            phone_number=customer_info['email'],
+            first_name=customer_info['first_name'],
+            last_name=customer_info['last_name'],
+            email_address=customer_info['email_address'],
+            phone_number=customer_info['phone_number'],
         )
 
     def create_address(self, address_type, customer, address_info):
         return Address.objects.create(
             customer = customer,
-            street_address = address_info['address1'],
-            apartment_address = address_info['address2'],
+            street_address = address_info['street_address'],
+            apartment_address = address_info['apartment_address'],
             city = address_info['city'],
             state = address_info['state'],
             zip = address_info['zip'],
@@ -271,11 +271,18 @@ class OrderViewSet(viewsets.ModelViewSet):
     def update_order_items(self, session_id, variant_id, order):
         if variant_id in [order_item.item.id for order_item in order.items.all()]:
             quantity = int(self.request.data.get('quantity'))
-            OrderItem.objects.filter(session_id=session_id, item_id=variant_id).update(quantity=quantity) 
+            order_item_qs = OrderItem.objects.filter(session_id=session_id, item_id=variant_id)
+            if quantity == 0:
+                self.delete_order_item(order_item_qs[0])
+            else:
+                order_item_qs.update(quantity=quantity) 
         else:
             order_item = self.create_order_item(session_id)
             order.items.add(order_item) 
             order.save()
+
+    def delete_order_item(self, order_item):
+        order_item.delete()
 
     def create_customer_details(self, serializer):
         customer = self.create_customer(self.request.data.get('customer_info'))
@@ -307,6 +314,10 @@ class AddressViewSet(viewsets.ModelViewSet):
     """
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
+    # lookup_field = "session_id"
+
+    # def get_queryset(self):
+    #     return Address.objects.filter(session_id=self.request.data.get('sessionId'))
 
 class PaymentViewSet(viewsets.ModelViewSet):
     """

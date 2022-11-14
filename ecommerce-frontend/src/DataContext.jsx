@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
-    const PRODUCTION = true;
+    const PRODUCTION = false;
     let BASE_URL = PRODUCTION ? "https://portfolio-projects-app-is9ao.ondigitalocean.app/" 
                               : "http://127.0.0.1:8000/";
 
@@ -92,7 +92,9 @@ export function DataProvider({ children }) {
 
     function clearSessionId() {
         localStorage.removeItem('sessionId');
+        localStorage.removeItem('cart');
         setSessionId(null);
+        setCart({});
     }
 
     const contextData = { cart, addToCart, sessionId, clearSessionId, BASE_URL };

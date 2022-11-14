@@ -7,7 +7,7 @@ import {
 import DataContext from "../DataContext";
 
 export default function CheckoutForm() {
-  const { BASE_URL } = useContext(DataContext);
+  const { BASE_URL, PRODUCTION } = useContext(DataContext);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -56,11 +56,14 @@ export default function CheckoutForm() {
 
     setIsLoading(true);
 
+    let success_url = PRODUCTION ? BASE_URL + "ecommerce/success/"
+                                 : "http://localhost:3000/ecommerce/success/";
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: BASE_URL + "ecommerce/success/",
+        return_url: success_url,
       },
     });
 

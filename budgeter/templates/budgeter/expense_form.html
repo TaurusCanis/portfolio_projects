@@ -1,0 +1,49 @@
+{% load static %}
+
+<div>
+  <h3 style="text-align:center;">Choose a Payment Method</h3>
+  <div class="payment-methods">
+    {% for radio in form.account %}
+    <label for="{{ radio.id_for_label }}">
+        {{ radio.tag }}
+        <span class="radio box">{{ radio.choice_label }}</span>
+    </label>
+    {% endfor %}
+  </div>
+</div>
+
+{% comment %}
+<div>
+  <h2 class="text-center">Choose Payment Method</h2>
+  <div class="row">
+  {% if bank_accounts %}
+  <div class="col">
+  <h3 class="text-center">Bank Accounts</h3>
+  {% for bank_account in bank_accounts %}
+  <div class="row justify-content-evenly">
+    <div class="col text-center">
+      <button type="button" id="bankaccount_{{ bank_account.account_base.id }}" class="btn border border-success text-success payment-method pm-credit-card">
+        {{ bank_account }}
+      </button>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+  {% endif %}
+  {% if credit_cards %}
+  <div class="col">
+  <h3 class="text-center">Credit Cards</h3>
+  {% for credit_card in credit_cards %}
+  <div class="row justify-content-evenly">
+    <div class="col text-center">
+      <button type="button" id="creditcard_{{ credit_card.account_base.id }}" class="btn border border-success text-success payment-method pm-credit-card">
+        {{ credit_card }}
+      </button>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+  {% endif %}
+  </div>
+</div>
+{% endcomment %}

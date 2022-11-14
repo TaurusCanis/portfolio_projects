@@ -83,7 +83,7 @@ class OrderItem(models.Model):
     # user = models.ForeignKey(settings.AUTH_USER_MODEL,
     #                          on_delete=models.CASCADE, blank=True, null=True)
     # customer = models.ForeignKey("Customer", on_delete=models.CASCADE, default="")
-    session_id = models.CharField(max_length=20, blank=True, null=True)
+    session_id = models.CharField(max_length=40, blank=True, null=True)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(ItemVariant, on_delete=models.CASCADE) #change from Item
     # item = models.ForeignKey(Item, on_delete=models.CASCADE) #original
@@ -194,12 +194,12 @@ class Address(models.Model):
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     # customer_name = models.CharField(max_length=20, blank=True, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
-    session_id = models.CharField(max_length=20, blank=True, null=True)
+    session_id = models.CharField(max_length=40, blank=True, null=True)
     street_address = models.CharField(max_length=200)
     apartment_address = models.CharField(max_length=200,null=True,blank=True)
     city = models.CharField(max_length=100)
     state = USStateField(default="CT")
-    country = CountryField(multiple=False)
+    # country = CountryField(multiple=False)
     zip = models.CharField(max_length=100)
     address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
     default = models.BooleanField(default=False)
@@ -214,7 +214,7 @@ class Payment(models.Model):
     stripe_payment_id = models.CharField(max_length=100, blank=True, null=True)
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
-    session_id = models.CharField(max_length=20, blank=True, null=True)
+    session_id = models.CharField(max_length=40, blank=True, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
 

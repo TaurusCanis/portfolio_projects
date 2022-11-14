@@ -1,0 +1,56 @@
+{% extends base_template %}
+{% load budgeter_extras %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'budgeter/styles/all_transactions_list.css' %}">
+{% endblock %}
+{% block content %}
+{% comment %}
+{% if base_template == 'budgeter/base.html' %}
+{% endcomment %}
+<div class="title border">
+{% if account %}
+<h2>{{ account }}</h2>
+{{ form.errors }}
+{{ form.non_field_errors }}
+<h3>Balance: ${{ account.account_base.balance }}</h3>
+{% else %}
+<h2>ALL ACCOUNTS</h2>
+{% endif %}
+</div>
+<form class="form border" action="{% url 'transaction_records_list_view' %}" method="POST">
+  {% csrf_token %}
+  <div class="date-selections">
+    <div class="start-date-label">
+      {{ form.start_date.label_tag }}
+    </div>
+    <div class="start-date-input">
+      {{ form.start_date }}
+    </div>
+    <div class="end-date-label">
+      {{ form.end_date.label_tag }}
+    </div>
+    <div class="end-date-input">
+      {{ form.end_date }}
+    </div>
+  </div>
+  <div class="transaction-type-label">
+    {{ form.transaction_type.label_tag }}
+  </div>
+  <div class="transaction-type-input">
+    {{ form.transaction_type }}
+  </div>
+  <div class="account-label">
+    {{ form.account.label_tag }}
+  </div>
+  <div class="account-input">
+    {{ form.account }}
+  </div>
+  <div class="submit-btn">
+    <input type="submit" value="Filter">
+  </div>
+</form>
+<div class="data border">
+{% include 'budgeter/transaction_record_form_list.html' %}
+</div>
+{% endblock %}

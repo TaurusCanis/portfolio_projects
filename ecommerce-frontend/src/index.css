@@ -4,7 +4,6 @@
 
 .App {
   width: 100%;
-  
 }
 
 html {
@@ -23,7 +22,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  height: 100vh;
 }
 
 code {
@@ -39,9 +38,9 @@ body {
   color: #121212;
 }
 
-/* main {
-  height: 100%;
-} */
+main {
+  height: calc(100% - var(--navbar-height));
+}
 
 a {
   text-decoration: none;
@@ -50,6 +49,10 @@ a {
 .root, nav, .container, .item-detail-container {
   display: flex;
   width: 100%;
+}
+
+:root {
+  --navbar-height: 65px;
 }
 
 .item-detail-container {
@@ -74,7 +77,8 @@ a {
 }
 
 nav {
-  height: 65px;
+  /* height: 65px; */
+  height: var(--navbar-height);
   background-color: #e16f2c;
   flex-direction: row;
   justify-content: space-between;
@@ -98,6 +102,7 @@ nav {
   flex-wrap: wrap;
   padding: 20px;
   justify-content: space-evenly;
+  align-items: center;
   height: 100%;
 }
 
@@ -109,7 +114,7 @@ nav {
   padding: 10px;
   margin: 10px;
   width: 30%;
-  max-height: 60%;
+  /* max-height: 60%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -138,6 +143,10 @@ img {
   width: inherit;
 }
 
+.product-img {
+  width: 75%;
+}
+
 .logo-container {
   width: 100%;
   height: calc(100vh - 65px); /* 65px is the height of the navbar element */
@@ -158,6 +167,18 @@ img {
   .item-detail-container {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .item-container {
+    width: 60%;
+  }
+}
+
+@media (max-width: 450px) {
+  .item-container {
+    width: 85%;
   }
 }
 
@@ -191,8 +212,12 @@ img {
   width: 50%;
 }
 
-.checkout-button {
-  margin: 30px;
+.hidden {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
 }
 
 .checkout-form-container {
@@ -201,6 +226,10 @@ img {
   width: 50%;
   align-self: center;
   padding: 70px; 
+}
+
+.checkout-form-element {
+
 }
 
 .shopping-cart {
@@ -221,6 +250,12 @@ footer {
 .footer-item {
   margin: 10px 0;
   color: white;
+}
+
+.message {
+  color: white;
+  background-color: #5cb85c;
+  padding: 20px;
 }
 
 textarea,

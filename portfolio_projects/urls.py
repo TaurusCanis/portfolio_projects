@@ -53,11 +53,22 @@ urlpatterns = [
     # path('ecommerce/success/', render_react),
     path('admin/', admin.site.urls),
     path('mbsr/', include('mbsr.urls')),
+    path('budgeter/', include('budgeter.urls')),
     path('api-auth/', include('rest_framework.urls')),
     re_path(r"^$", render_react),
 ]
 
-handler404 = 'mbsr.views.not_found_404'
+from django.views.defaults import page_not_found
+
+def my_error_404(request, exception):
+    template_name = '404.html'
+    if request.path.startswith('/budgeter/'):
+        template_name='budgeter/404.html'
+    elif request.path.startswith('/mbsr/'):
+        template_name='mbsr/404.html'
+    return page_not_found(request, exception, template_name=template_name)
+
+handler404 = my_error_404
 
 
   

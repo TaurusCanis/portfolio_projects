@@ -1,0 +1,25 @@
+{% extends 'budgeter/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'budgeter/styles/dashboard.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="available-funds border">
+      <div class="funds-display-text">
+        <h2>Total Funds Available:</h2>
+        <h2>${{ total_available_funds }}</h2>
+      </div>
+    </div>
+    <div class="account-list border border-2">
+      {% include 'budgeter/account_list.html' %}
+    </div>
+    <div class="creditcard-list border border-2">
+      {% include 'budgeter/creditcard_list.html' %}
+    </div>
+    <div class="transactionrecord-list border">
+      {% include 'budgeter/transaction_records_list.html' %}
+      <div class="pt-2">
+        <a href="{% url 'transaction_records_list_view' %}">View All Transaction Records</a>
+      </div>
+    </div>
+{% endblock %}

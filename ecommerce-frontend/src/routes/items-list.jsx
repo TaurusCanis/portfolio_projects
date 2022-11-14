@@ -27,7 +27,7 @@ export default function ItemsList() {
     }, []);
 
     return (
-        <>
+        <main>
             { !isLoading &&
                 <>
                 <div className="items-container">
@@ -46,6 +46,6 @@ export default function ItemsList() {
                 </div>
                 </>
             }
-        </>
+        </main>
     )
 }

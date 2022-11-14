@@ -21,6 +21,7 @@ export default function ItemDetail() {
     const [variantId, setVariantId] = useState();
     const {cart, addToCart} = useContext(DataContext);
     const { BASE_URL } = useContext(DataContext);
+    const [checkoutButtonIsVisible, setCheckoutButtonIsVisible] = useState(Object.values(cart).some(item => item > 0));
 
     useEffect(() => {
         const url = BASE_URL + `ecommerce-api/items/${params.itemId}/`;
@@ -52,6 +53,7 @@ export default function ItemDetail() {
     function updateCart(e) {
         e.preventDefault();
         addToCart(variantId, quantity);
+        setCheckoutButtonIsVisible(true);
     }
 
     function updateVariantId(e) {
@@ -69,7 +71,7 @@ export default function ItemDetail() {
             <div class="container product-page-container">
                 <div className="item-detail-container">
                     <div className="img-container">
-                        <img src={item1Mockup}></img>
+                        <img class="product-img" src={item1Mockup}></img>
                     </div>
                     <div className="product-purchase-container">
                         <div>
@@ -96,13 +98,11 @@ export default function ItemDetail() {
                                 <button className="add-to-cart-form-input" onClick={updateCart}>Add to Cart</button>
                             </div>
                         </form>
-                        { Object.keys(cart).length > 0 && 
-                            <form className="add-to-cart-form">
-                                <div className="container">
-                                    <button onClick={navigateToCheckout} class="add-to-cart-form-input checkout-button">Proceed to Checkout</button>
+                        <form className="add-to-cart-form">
+                                <div className={checkoutButtonIsVisible ? "container" : "container hidden"}>
+                                    <button id="go-to-checkout-button" onClick={navigateToCheckout} class="add-to-cart-form-input checkout-button">Proceed to Checkout</button>
                                 </div>
                             </form>
-                        }
                     </div>
                 </div>
                 <div className="product-info-container">

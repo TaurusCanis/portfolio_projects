@@ -3,9 +3,9 @@ import DataContext from "../DataContext";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm";
+import Message from "../components/Message";
 
 const stripePromise = loadStripe("pk_test_4tNiwpsFHEX7N7hon7bpW4kE00saVfxboZ");
-
 
 export default function Payment() {
   const { BASE_URL } = useContext(DataContext);
@@ -38,12 +38,13 @@ export default function Payment() {
     };
   
     return (
-      <div className="container">
+      <main class="container">
+        <Message message="You are in Test Mode. Use card number 4242 4242 4242 4242 and complete the rest of the payment form as you wish to test the payment process flow." />
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
             <CheckoutForm />
           </Elements>
         )}
-      </div>
+      </main>
     );
 }

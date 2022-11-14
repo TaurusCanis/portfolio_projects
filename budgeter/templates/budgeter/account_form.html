@@ -1,0 +1,12 @@
+{% extends 'budgeter/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'budgeter/styles/account_form.css' %}">
+{% endblock %}
+{% block content %}
+<h1>Add an Account</h1>
+<form class="form" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input class="submit-btn" type="submit" value="Save">
+</form>
+{% endblock %}
